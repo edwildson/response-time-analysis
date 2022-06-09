@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %} {% load i18n %}
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>{% block title %}Título - Alterar{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fa/css/all.min.css' %}">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+<body data-lang="pt-br">
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+            <a class="navbar-brand">EJ2M</a>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            </div>
+        </nav>
+    </div>
+    
+    <div class="p-5 bg-dark text-white">
+        <h1>Nome do produto</h1>
+        <p>Descrição</p>
+      </div>
+
+    
+
+
+    <div class="container mt-4">
+        {% block messages %} {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %} {% endblock messages %} {% block container %}{% endblock %}
+        
+        
+    </div>
+
+
+    <footer class="d-flex flex-column bg-light text-center position-absolute bottom-0 w-100">
+   
+        
+              <!-- Copyright -->
+        <div class="text-center p-3 flex-item" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2020 Copyright:
+          <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>
