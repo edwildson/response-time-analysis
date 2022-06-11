@@ -6,6 +6,48 @@
             <input type="file" name="myfile">
             <button type="submit">Upload</button>
         </form>
+
+        {% if context %}
+        <h2 class="mt-4">Tarefas e suas configurações para análise</h2>
+            <table class="table table-striped table-bordered mt-4">
+                <thead>
+                    <tr>
+                        <th scope="col">TAREFA</th>
+                        <th scope="col">T</th>
+                        <th scope="col">D</th>
+                        <th scope="col">C</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for x in context.table %}
+                        <tr>
+                            {% for row in x %}<td> {{row}} </td>{% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+
+            <h2>Análise de tempo das tarefas</h2>
+            <br>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">TAREFA</th>
+                        
+                </tr>
+                </thead>
+                <tbody>
+                    {% for x in context.data %}
+                        <tr>
+                            <td>Tarefa {{ forloop.counter }}</td>
+                            {% for time in x %}<td> {{time}} </td>{% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        {% endif %}
     </div>
 {% endblock container %}
     
