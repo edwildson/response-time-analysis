@@ -77,7 +77,7 @@ def analysis(data):
 
                     if r > data[2]:
                         return {
-                            "data": response_time_dict, "status": messages.ERROR, "message": "Atividade " + index+1 + "não é escalonável."
+                            "data": response_time_dict, "status": messages.ERROR, "message": "Atividade " + (index+1) + "não é escalonável."
                         }  
                         # return data[0] + " não escalonável"
 
@@ -90,6 +90,6 @@ def analysis(data):
         }    
     else:
         return {
-            "data": {}, "status": messages.ERROR, "message": "Atividade " + index+1 + "não é escalonável."
+            "data": {}, "status": messages.ERROR, "message": "Atividades não escalonáveis, pois U>=1."
         }  
 
