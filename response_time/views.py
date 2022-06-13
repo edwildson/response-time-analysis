@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View, TemplateView, CreateView
+from django.contrib import messages
 
 from .utils import analysis
 
@@ -17,7 +18,7 @@ def IndexView(request):
 
     if request.method == "POST":
         result = analysis(request.FILES['myfile'])
-        
+        messages.add_message(request, result['status'], result['message'])
         return render(request, 'index.html', {'context': result, 'base_template_name': base_template_name})
         
         	

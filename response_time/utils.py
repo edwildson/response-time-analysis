@@ -1,8 +1,7 @@
 from math import ceil
 from multiprocessing.spawn import import_main_path
-from urllib import response
 from tablib import Dataset
-from django.http import JsonResponse 
+from django.contrib.messages import constants as messages
 
 def analysis(data):
     data_to_analysis = data
@@ -78,7 +77,7 @@ def analysis(data):
 
                     if r > data[2]:
                         return {
-                            "data": response_time_dict, "status": "fail", "msg": "Atividade " + index+1 + "não é escalonável."
+                            "data": response_time_dict, "status": messages.ERROR, "message": "Atividade " + index+1 + "não é escalonável."
                         }  
                         # return data[0] + " não escalonável"
 
@@ -87,10 +86,10 @@ def analysis(data):
         print(response_time_dict) 
         
         return {
-            "table": imported_data, "data": response_time_dict.values(), "status": "ok"
+            "table": imported_data, "data": response_time_dict.values(), "message": "Atividades escalonáveis", "status": messages.SUCCESS
         }    
     else:
         return {
-            "data": {}, "status": "fail", "msg": "Atividade " + index+1 + "não é escalonável."
+            "data": {}, "status": messages.ERROR, "message": "Atividade " + index+1 + "não é escalonável."
         }  
 
