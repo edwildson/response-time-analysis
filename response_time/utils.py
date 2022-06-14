@@ -71,25 +71,25 @@ def analysis(data):
                 # print("Valor adicionado no array: ", r)
                 # response_time_dict[index].append(r)
 
+                    if r > data[2]:
+                        return {
+                            "table": imported_data, "data": response_time_dict.values(), "status": messages.ERROR, "message": "Tarefa não é escalonável."
+                        }  
+                        # return data[0] + " não escalonável"
                     if r == response_time_dict[index][-2]:
                         print("Tarefa ", index+1, " ok")
                         break
 
-                    if r > data[2]:
-                        return {
-                            "data": response_time_dict, "status": messages.ERROR, "message": "Atividade " + (index+1) + "não é escalonável."
-                        }  
-                        # return data[0] + " não escalonável"
 
                 counter += 1
             print("passou do while")
         print(response_time_dict) 
         
         return {
-            "table": imported_data, "data": response_time_dict.values(), "message": "Atividades escalonáveis", "status": messages.SUCCESS
+            "table": imported_data, "data": response_time_dict.values(), "message": "Tarefas escalonáveis", "status": messages.SUCCESS
         }    
     else:
         return {
-            "data": {}, "status": messages.ERROR, "message": "Atividades não escalonáveis, pois U>=1."
+           "table": imported_data, "data": {}, "status": messages.ERROR, "message": "Tarefas não escalonáveis, pois U>=1."
         }  
 

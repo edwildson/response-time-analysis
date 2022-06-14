@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %} 
 {% block container %}
     <div class="container text-center mt-4" >
         <form method="post" enctype="multipart/form-data">
@@ -16,6 +17,7 @@
                         <th scope="col">T</th>
                         <th scope="col">D</th>
                         <th scope="col">C</th>
+                        <th scope="col">J</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -28,25 +30,32 @@
 
             </table>
 
-            <h2>Análise de tempo das tarefas</h2>
-            <br>
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">TAREFA</th>
-                        
-                </tr>
-                </thead>
-                <tbody>
-                    {% for x in context.data %}
+
+            {% if context.data %}
+                <h2>Análise de tempo das tarefas</h2>
+                <br>
+
+                <table class="table table-striped table-bordered">
+                    <thead>
                         <tr>
-                            <td>Tarefa {{ forloop.counter }}</td>
-                            {% for time in x %}<td> {{time}} </td>{% endfor %}
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            
+                            <th scope="col">TAREFA</th>
+                            
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for x in context.data %}
+                            <tr>
+                                <td>Tarefa {{ forloop.counter }}</td>
+                                {% for time in x %}<td> {{time}} </td>{% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}    
+        {% else %}
+        <div class="container mt-4">
+            <div class="alert alert-dark">Para baixar um modelo clique <a href="{% static 'docs/modelo.xlsx' %}">aqui</a></div>
+        </div>
         {% endif %}
     </div>
 {% endblock container %}
