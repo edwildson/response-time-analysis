@@ -19,6 +19,6 @@ from django.urls import path
 from response_time import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('',    views.index),
+    path('admin/', admin.site.urls),
 ]
