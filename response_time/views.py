@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import View, TemplateView, CreateView
+from django.contrib import messages
 
 from .utils import analysis
 
@@ -9,12 +10,22 @@ from .utils import analysis
 def IndexView(request):
     base_template_name = 'base.html'
 
+    def get_context_data(self, *args, **kwargs):
+        # texts = ['Lorem ipsum', 'dolor sit amet', 'consectetur']
+        context = {
+        }
+        return context
+
     if request.method == "POST":
         result = analysis(request.FILES['myfile'])
+        messages.add_message(request, result['status'], result['message'])
+        return render(request, 'index.html', {'context': result, 'base_template_name': base_template_name})
         
         	
 
     return render(request, 'index.html', {'base_template_name': base_template_name})
+
+
 
 
 index = IndexView

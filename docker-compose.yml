@@ -15,3 +15,11 @@ services:
       - .:/response_time_analysis
     # Handles the command used to run the project in the Docker container.
     command: sh -c "python manage.py runserver 0.0.0.0:8000"
+  
+  jupyter:
+    image: jupyter/scipy-notebook
+    build: .
+    ports: 
+      - "8888:8888"
+    volumes: 
+      - .:/home/jovyan/work
